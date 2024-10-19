@@ -34,3 +34,7 @@ sudo snap install firefox
 -> INSTALAR O DOCKER 
 sudo snap install docker
 sudo addgroup --system docker
+
+
+-> PROCUAR O PACOTE A INSTALAR COMO POR EXEMPLO MARIADB
+apt-cache search mariadb
