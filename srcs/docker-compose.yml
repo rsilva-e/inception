@@ -11,6 +11,7 @@ services:
     env_file: .env
     init: true
     restart: on-failure
+    
   wordpress:
     container_name: wordpress
     build:
@@ -24,6 +25,7 @@ services:
     restart: on-failure
     depends_on:
       - mariadb
+
   nginx:
     container_name: nginx
     build:
@@ -38,6 +40,7 @@ services:
     restart: on-failure
     depends_on:
       - wordpress
+      
 volumes:
   db:
     driver: local
