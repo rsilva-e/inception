@@ -8,7 +8,11 @@ services:
       - db:/var/lib/mysql/
     networks:
       - default
-    env_file: .env
+    environment:
+    	- MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=somewordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
     init: true
     restart: on-failure
     
@@ -20,7 +24,12 @@ services:
       - app:/var/www/wordpress/
     networks:
       - default
-    env_file: .env
+    environment:
+    	- WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+      
     init: true
     restart: on-failure
     depends_on:
