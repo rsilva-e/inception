@@ -10,7 +10,7 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
-# Configurar o MariaDB para rodar como serviço no container
+## Configurar o MariaDB para rodar como serviço no container
 RUN mkdir -p /run/mysqld && chown -R mysql:mysql /run/mysqld
 
 
@@ -26,4 +26,4 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 
 
-CMD ["mariadb"]
+CMD ["mysqld_safe"]
