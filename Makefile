@@ -6,7 +6,7 @@
 #    By: rsilva-e <rsilva-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 11:28:06 by rsilva-e          #+#    #+#              #
-#    Updated: 2025/04/03 17:41:37 by rsilva-e         ###   ########.fr        #
+#    Updated: 2025/04/03 20:24:05 by rsilva-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,9 @@ build: check_host check_volume_folder
 run: check_host check_volume_folder   # Uses docker-compose up -d to start the services in detached mode.
 	docker-compose -p $(NAME) -f $(COMPOSE) up --build && \
 	trap "make stop" EXIT
+
+start:
+	docker-compose -p $(NAME) start
 
 stop:   # Uses docker-compose down to stop and remove the containers.
 	docker-compose -p $(NAME) stop

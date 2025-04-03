@@ -13,7 +13,8 @@ services:
     init: true
     restart: on-failure
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
 
   mariadb:
     container_name: mariadb
@@ -26,6 +27,11 @@ services:
     networks:
       - default
     env_file: .env
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     init: true
     restart: on-failure
 

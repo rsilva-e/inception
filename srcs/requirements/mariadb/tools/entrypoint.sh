@@ -2,10 +2,10 @@
 #!/bin/bash
 set -e
 
-# Modificar a configuração para aceitar conexões externas
+# Modify the configuration to accept external connections
 sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mysql/mariadb.conf.d/50-server.cnf
 
-# Iniciar o serviço MariaDB
+# Start Service MariaDB
 service mariadb start
 sleep 1
 
@@ -18,7 +18,7 @@ sleep 1
         exit 1
     fi
 
-# Configuração inicial do banco de dados
+# Initial database configuration
 mariadb -u root << EOF
 CREATE DATABASE IF NOT EXISTS $DB_NAME;
 CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PWD';
