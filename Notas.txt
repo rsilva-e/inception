@@ -10,7 +10,7 @@ sudo reboot now
 sudo apt install build-essential dkms
 sudo reboot now
 
-
+SSSSS
 -> MOUNT A PASTA /mnt
 sudo mount /dev/cdrom /mnt
 cd /mnt
