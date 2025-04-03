@@ -11,10 +11,6 @@ mkdir -p /run/php/
 
 mkdir -p /var/www/html/wordpress
 cd /var/www/html/wordpress/
-#mv /tmp/wp-config.php /var/www/html/wordpress/
-# chown -R www-data:www-data /var/www/html
-#echo "WP: test binding volumes" > /var/www/html/wordpress/binding.log
-#cat /var/www/html/wordpress/binding.log
 
 if [ -f /run/secrets/secrets_inception ]; then
 (

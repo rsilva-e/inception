@@ -9,7 +9,7 @@ services:
       - app:/var/www/html/wordpress/
     networks:
       - default
-    env_file: .env
+    env_file: /home/rsilva-e/secrets/.env
     init: true
     restart: on-failure
     depends_on:
@@ -26,7 +26,7 @@ services:
       - db:/var/lib/mysql/
     networks:
       - default
-    env_file: .env
+    env_file: /home/rsilva-e/secrets/.env
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -51,7 +51,7 @@ services:
       - wordpress
 secrets:
   secrets_inception:
-    file: ../secrets/secrets.txt
+    file: /home/rsilva-e/secrets/secrets.txt
 volumes:
   db:
     driver: local
