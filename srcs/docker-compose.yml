@@ -3,6 +3,8 @@ services:
     container_name: wordpress
     build:
       context: ./requirements/wordpress/
+    secrets:
+      - secrets_inception
     volumes:
       - app:/var/www/html/wordpress/
     networks:
@@ -17,6 +19,8 @@ services:
     container_name: mariadb
     build:
      context: ./requirements/mariadb/
+    secrets:
+      - secrets_inception
     volumes:
       - db:/var/lib/mysql/
     networks:
@@ -39,7 +43,8 @@ services:
     restart: on-failure
     depends_on:
       - wordpress
-      
+secrets:
+  secrets_inception: ../secrets/secrets.txt
 volumes:
   db:
     driver: local
