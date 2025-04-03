@@ -11,10 +11,8 @@ sleep 1
 
 (
     if [ -f /run/secrets/secrets_inception ]; then
-        WP_DB_NAME = $(grep 'db_name=' /run/secrets/secrets.txt | cut -d '=' -f2)
-        WP_DB_USER = $(grep 'db_user=' /run/secrets/secrets.txt | cut -d '=' -f2)
-        WP_DB_PWD = $(grep 'db_pass=' /run/secrets/secrets.txt | cut -d '=' -f2)
-        DB_ROOT_PWD = $(grep 'db_root_pwd=' /run/secrets/secrets.txt | cut -d '=' -f2)
+        DB_PWD=$(grep 'db_pass=' /run/secrets/secrets_inception | cut -d '=' -f2)
+        DB_ROOT_PWD=$(grep 'db_root_pass=' /run/secrets/secrets_inception | cut -d '=' -f2)
     else
         echo "Error : Secrets not found"
         exit 1
@@ -22,13 +20,14 @@ sleep 1
 
 # Configuração inicial do banco de dados
 mariadb -u root << EOF
-CREATE DATABASE IF NOT EXISTS $WP_DB_NAME;
-CREATE USER IF NOT EXISTS '$WP_DB_USER'@'%' IDENTIFIED BY '$WP_DB_PWD';
-GRANT ALL PRIVILEGES ON $WP_DB_NAME.* TO '$WP_DB_USER'@'%' IDENTIFIED BY '$WP_DB_PWD';
-GRANT ALL PRIVILEGES ON $WP_DB_NAME.* TO 'root'@'%' IDENTIFIED BY '$DB_ROOT_PWD' WITH GRANT OPTION;
+CREATE DATABASE IF NOT EXISTS $DB_NAME;
+CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PWD';
+GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%' IDENTIFIED BY '$DB_PWD';
+GRANT ALL PRIVILEGES ON $DB_NAME.* TO 'root'@'%' IDENTIFIED BY '$DB_ROOT_PWD' WITH GRANT OPTION;
 ALTER USER 'root'@'%' IDENTIFIED BY '$DB_ROOT_PWD';
 FLUSH PRIVILEGES;
 EOF
+
 
 )
 

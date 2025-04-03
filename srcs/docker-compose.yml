@@ -44,20 +44,21 @@ services:
     depends_on:
       - wordpress
 secrets:
-  secrets_inception: ../secrets/secrets.txt
+  secrets_inception:
+    file: ../secrets/secrets.txt
 volumes:
   db:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/rsilva-e/data/mariadb
+      device: /home/rsilva-e/data/db/
   app:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/rsilva-e/data/wordpress/
+      device: /home/rsilva-e/data/wp/
 networks:
   default:
     driver: bridge
